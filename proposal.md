@@ -33,7 +33,7 @@ We will use Python 3 as the main programming language. The project will rely pri
 
 The console interface will display questions one at a time, accept user input, provide immediate feedback, and calculate the final score once all questions are completed. If time permits, we will enhance the feedback system to highlight areas of weakness and suggest targeted review. If any implementation challenges arise (e.g., parsing complex text structures or calculating adaptive weights), the team will explore documentation, Python forums, and open-source examples of quiz applications for guidance.
 
-Project Schedule: 
+Project Schedule: showing weeks and goals per week
 Week 1: Nov 6-Nov 10
 - Milestone/ Goals: Finalize project proposal, assign team roles, and set up GitHub repository.
 
