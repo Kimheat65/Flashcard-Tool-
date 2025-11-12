@@ -6,7 +6,7 @@ Collaboration Plan: How will you collaborate with your teammates on this project
 Risks and Limitations: What do you think is the biggest risk to the success of your project?
 Additional Course Content: Are there any course topics or content you think would be helpful for your project?
 
-
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Answers to the Questions: 
 
