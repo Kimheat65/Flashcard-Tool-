@@ -12,7 +12,7 @@ Answers to the Questions:
 
 The Big Idea:
 Our project aims to develop an interactive question-and-answer practice tool that helps users test their knowledge on any topic by uploading or inputting their own questions and answers. The program will be built entirely in Python and run through a console-based interface. Users will either type their questions and answers directly into the program or upload a text document, which the system will parse using text analysis techniques to separate questions and answers automatically. Once the questions are loaded, the program will randomize the order and present them one at a time in the terminal. The user will type their answer, and the program will immediately display whether the answer was correct or incorrect. After all questions are completed, the program will generate a final score and feedback summary. If the user scores below 80%, the tool will automatically start another round of practice, prioritizing the questions answered incorrectly. This will be done by increasing the probability that missed questions reappear during the next randomized run.
-- MVP (Minimum Viable Product): A functional command-line Python program that can import questions,     randomize them, prompt the user for answers, display results, and calculate a final score.
+- MVP (Minimum Viable Product): A functional command-line Python program that can import questions, randomize them, prompt the user for answers, display results, and calculate a final score.
 - Strech Goal: Implement adaptive question weighting (missed questions appear more often), detailed performance summaries after each session, and the ability to save results between runs for future study tracking.
 
 Learning Goals: 
@@ -48,4 +48,18 @@ Week 4: Nov 25-Dec 1
 
 Week 5: Dec 2- Dec 3
 - Milestone/ Goal: Conduct full testing, debug any issues, finalize documentation, and prepare demo.
+
+Collaboration Plan: 
+Our main collaboration method will be through code-sharing on GitHub, whcih enables asynchronous collaboration. By working in the same repository, we can track each other's progress. We plan to divide tasks based on our strengths, project needs, and individual's goals, allowing each member to focus on specific components while ensuring that the projects will run smoothly and efficiently. We will regula
+
+Risks and Limitations: 
+Some of the risks and limitations we anticipate and would aim to improve upon are poor data management and time consuming. 
+Data management: The flashcard tool relies on users uploading documents with proper punctuation and formatting. For instance, a question mark at the end of the sentence indicates that the statement should be recognized as a question. However, if the user submits a document with frequent punctuation or grammatical errors, the tool may fail to identify certain questions, limiting the number of flashcards generated. This means users may miss the opportunity to practice some of the questions. This application's effectiveness depends heavily on the users' ability to correctly grammatical structures. 
+Time Consuming: Users who manually type questions and answers into the application may find the process lengthy, especially if they have a large number of entries. Less patient users may feel discouraged to use the tool. It is more effective and recommended for users who already have their questions and answers prepared in documents that can easily be uploaded. 
+
+Additional Course Content: Other course content that may be useful includes learning how to save and keep track of progress in case users stopped in the middle of the practice and provide a user-friendly 
+
+
+
+
   
