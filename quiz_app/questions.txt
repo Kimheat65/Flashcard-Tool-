@@ -1,8 +1,287 @@
 What is the capital of France?
 Paris
 
-What is 2 + 2?
-4
+What is the largest planet in our solar system?
+Jupiter
 
-Who is the founder of Babson College?
-Roger Babson
+Who wrote "Romeo and Juliet"?
+William Shakespeare
+
+What gas do plants absorb from the atmosphere?
+Carbon dioxide
+
+What is the chemical symbol for gold?
+Au
+
+How many continents are there on Earth?
+Seven
+
+Who painted the Mona Lisa?
+Leonardo da Vinci
+
+What is the fastest land animal?
+Cheetah
+
+What is the hardest natural substance on Earth?
+Diamond
+
+What organ pumps blood through the body?
+Heart
+
+What is the boiling point of water in Celsius?
+100
+
+Who was the first President of the United States?
+George Washington
+
+What planet is known as the Red Planet?
+Mars
+
+What is the longest river in the world?
+Nile River
+
+What is the square root of 81?
+9
+
+What do bees produce?
+Honey
+
+What gas do humans breathe in to survive?
+Oxygen
+
+Who discovered gravity (according to legend)?
+Isaac Newton
+
+What is the largest ocean on Earth?
+Pacific Ocean
+
+What animal is known as the King of the Jungle?
+Lion
+
+What is the smallest prime number?
+2
+
+What is the main language spoken in Spain?
+Spanish
+
+What do you call a baby dog?
+Puppy
+
+How many days are in a leap year?
+366
+
+What is the chemical formula for water?
+H2O
+
+Which planet has rings?
+Saturn
+
+What is the tallest mountain in the world?
+Mount Everest
+
+Who invented the telephone?
+Alexander Graham Bell
+
+What is the currency of Japan?
+Yen
+
+What is the capital of Italy?
+Rome
+
+What type of animal is a dolphin?
+Mammal
+
+What is the main ingredient in bread?
+Flour
+
+What is the opposite of "cold"?
+Hot
+
+What color do you get when you mix red and white?
+Pink
+
+What is the largest mammal?
+Blue whale
+
+What is the most widely spoken language in the world?
+English
+
+What does a thermometer measure?
+Temperature
+
+What is the capital of Canada?
+Ottawa
+
+What do cows drink?
+Water
+
+Which ocean is on the East Coast of the United States?
+Atlantic Ocean
+
+What shape has three sides?
+Triangle
+
+How many hours are in a day?
+24
+
+Who was the first man on the moon?
+Neil Armstrong
+
+What is the closest star to Earth?
+The Sun
+
+What fruit is known for keeping doctors away?
+Apple
+
+What is the freezing point of water in Celsius?
+0
+
+What is the opposite of "up"?
+Down
+
+What colors are on the U.S. flag?
+Red, white, blue
+
+How many legs does a spider have?
+Eight
+
+What is the largest country by land area?
+Russia
+
+What is the name of the galaxy Earth is in?
+Milky Way
+
+Which month has 28 days?
+All of them
+
+What is the tallest animal?
+Giraffe
+
+What is the capital of Australia?
+Canberra
+
+What instrument has 88 keys?
+Piano
+
+Which animal is known for its black-and-white stripes?
+Zebra
+
+What do you call frozen water?
+Ice
+
+Which planet is closest to the sun?
+Mercury
+
+What animal lays eggs?
+Birds
+
+What color are bananas when ripe?
+Yellow
+
+What number comes after 49?
+50
+
+How many states are in the United States?
+50
+
+What season comes after summer?
+Fall
+
+What do butterflies start life as?
+Caterpillars
+
+What is the capital of Mexico?
+Mexico City
+
+Which animal is known for its trunk?
+Elephant
+
+What do you call a young cat?
+Kitten
+
+Which nutrient builds muscle?
+Protein
+
+What is 10 × 10?
+100
+
+What color is the sky on a clear day?
+Blue
+
+How many wheels does a bicycle have?
+Two
+
+What country is famous for sushi?
+Japan
+
+What animal is known for its quills?
+Porcupine
+
+What is the main gas in Earth’s atmosphere?
+Nitrogen
+
+What is 5 + 7?
+12
+
+What organ helps you breathe?
+Lungs
+
+What insect makes a buzzing sound?
+Bee
+
+What is the name of Earth’s largest continent?
+Asia
+
+What is the capital of the United Kingdom?
+London
+
+What is the longest bone in the human body?
+Femur
+
+What food does a panda mainly eat?
+Bamboo
+
+What is the fastest bird?
+Peregrine falcon
+
+What color is chlorophyll?
+Green
+
+What is the first month of the year?
+January
+
+How many minutes are in an hour?
+60
+
+Who wrote "Harry Potter"?
+J.K. Rowling
+
+What sport uses a racket?
+Tennis
+
+Which ocean is the largest?
+Pacific Ocean
+
+What planet is known for its storms and Great Red Spot?
+Jupiter
+
+What type of animal is a shark?
+Fish
+
+What is the main organ of the nervous system?
+Brain
+
+How many letters are in the English alphabet?
+26
+
+What animal is known as man's best friend?
+Dog
+
+What do you call molten rock inside a volcano?
+Magma
+
+What is the name of the U.S. national anthem?
+The Star-Spangled Banner
+
+What is the most abundant mineral in Earth’s crust?
+Quartz
