@@ -1,3 +1,17 @@
+"""
+OIM3640 Final Project - Q&A Practice Tool
+
+This program lets users practice custom question-and-answer sets.
+Users can:
+- Load questions from a text file (questions.txt)
+- Enter questions manually
+- Take randomized quizzes with instant feedback
+- Get repeated practice on missed questions
+- Track performance over multiple rounds and sessions
+
+Authors: Saba Ali, Kimheat Chheav
+"""
+
 import os
 import json
 import random
