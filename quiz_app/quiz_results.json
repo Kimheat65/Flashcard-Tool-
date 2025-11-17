@@ -20,5 +20,21 @@
       "correct_answers": 4,
       "score_percent": 80.0
     }
+  ],
+  "test3": [
+    {
+      "round": 1,
+      "total_questions": 1,
+      "correct_answers": 1,
+      "score_percent": 100.0
+    }
+  ],
+  "exam1": [
+    {
+      "round": 1,
+      "total_questions": 1,
+      "correct_answers": 1,
+      "score_percent": 100.0
+    }
   ]
 }
