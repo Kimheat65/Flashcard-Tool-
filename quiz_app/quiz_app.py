@@ -3,13 +3,14 @@ OIM3640 Final Project - Q&A Practice Tool
 
 This program lets users practice custom question-and-answer sets.
 Users can:
+- Start from a simple start menu
 - Load questions from a text file (questions.txt)
 - Enter questions manually
+- Load all manually entered questions from a log file
 - Take randomized quizzes with instant feedback
-- Get repeated practice on missed questions
+- Get repeated practice on missed questions (adaptive weighting)
+- Must reach 80% to "pass" a quiz round
 - Track performance over multiple rounds and sessions
-- Automatically log all manually entered questions to a master file
-- Load and quiz on all manually logged questions (manual_questions_log.txt)
 """
 
 import os
@@ -316,27 +317,63 @@ def run_quiz_session(cards: List[Flashcard], quiz_name: str) -> None:
         round_number += 1
 
 
-# ---------- Main menu (looping) ----------
+# ---------- Main with Start Menu ----------
 
 def main():
-    """Looping menu to load questions and start quizzes."""
+    """Main entry point with a Start Menu and then a looping quiz menu."""
 
-    # Ask once per run which quiz name to use for saving results
+    while True:
+        # Start screen
+        print("\n====================================")
+        print("       FLASHCARD PRACTICE TOOL")
+        print("====================================")
+        print("1) Start")
+        print("2) Instructions")
+        print("3) Quit")
+        start_choice = input("Select an option (1-3): ").strip()
+
+        if start_choice == "3":
+            print("Goodbye!")
+            return
+
+        elif start_choice == "2":
+            print("\n--- Instructions ---")
+            print("This tool allows you to practice questions in three ways:\n")
+            print("1) Load questions from questions.txt")
+            print("2) Manually enter your own questions")
+            print("3) Load all previously manually entered questions")
+            print("\nQuiz behavior:")
+            print("- Questions are shown one at a time.")
+            print("- You get immediate feedback (correct/incorrect).")
+            print("- Missed questions are more likely to be asked again.")
+            print("- You must reach at least 80% to finish a quiz round.\n")
+            input("Press Enter to return to the start menu...")
+            continue
+
+        elif start_choice != "1":
+            print("Invalid choice. Please try again.")
+            continue
+
+        # If the user selected START, we now move to the quiz setup section
+        break
+
+    # After selecting START, ask for quiz name
     quiz_name = input(
-        "Enter a name for this quiz (e.g., 'exam1', 'bio_midterm'): "
+        "\nEnter a name for this quiz (e.g., 'exam1', 'bio_midterm'): "
     ).strip() or "default_quiz"
 
+    # Looping main menu for loading questions and running quizzes
     while True:
         print("\nHow would you like to load your questions?")
         print("1) Load from questions.txt")
         print("2) Enter questions manually")
         print("3) Load from manual_questions_log.txt")
-        print("q) Quit")
+        print("q) Quit to Start Menu")
         choice = input("Choose 1, 2, 3, or q: ").strip().lower()
 
         if choice == "q":
-            print("Goodbye!")
-            break
+            # Go back to the start menu
+            return main()
 
         cards: List[Flashcard] = []
 
@@ -359,11 +396,11 @@ def main():
             # Ask what to do next
             print("\nWhat would you like to do next?")
             print("1) Start a quiz with these questions now")
-            print("2) Return to main menu (questions are still saved to the manual log)")
+            print("2) Return to main menu "
+                  "(questions are still saved to the manual log)")
             sub = input("Choose 1 or 2: ").strip()
 
             if sub == "2":
-                # Do not quiz now; loop back to main menu
                 cards = []
                 print("Returning to main menu...")
                 continue
@@ -399,9 +436,9 @@ def main():
         # Run the full quiz session (with 80% rule + adaptive weighting)
         run_quiz_session(cards, quiz_name)
 
-        # After a quiz, ask if they want to go back to the main menu
+        # After a quiz, ask if they want to go back to the quiz menu
         again = input(
-            "\nReturn to the main menu for another action? (y/n): "
+            "\nReturn to the question-loading menu for another action? (y/n): "
         ).strip().lower()
         if again != "y":
             print("Goodbye!")
