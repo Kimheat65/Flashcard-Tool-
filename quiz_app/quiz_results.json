@@ -36,5 +36,27 @@
       "correct_answers": 1,
       "score_percent": 100.0
     }
+  ],
+  "ricky quiz": [
+    {
+      "round": 1,
+      "total_questions": 4,
+      "correct_answers": 2,
+      "score_percent": 50.0
+    }
+  ],
+  "test": [
+    {
+      "round": 1,
+      "total_questions": 1,
+      "correct_answers": 1,
+      "score_percent": 100.0
+    },
+    {
+      "round": 1,
+      "total_questions": 1,
+      "correct_answers": 1,
+      "score_percent": 100.0
+    }
   ]
 }

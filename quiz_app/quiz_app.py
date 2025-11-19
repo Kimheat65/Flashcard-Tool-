@@ -8,8 +8,8 @@ Users can:
 - Take randomized quizzes with instant feedback
 - Get repeated practice on missed questions
 - Track performance over multiple rounds and sessions
-
-Authors: Saba Ali, Kimheat Chheav
+- Automatically log all manually entered questions to a master file
+- Load and quiz on all manually logged questions (manual_questions_log.txt)
 """
 
 import os
@@ -18,10 +18,17 @@ import random
 from dataclasses import dataclass
 from typing import List, Dict, Any
 
-# Path for saving quiz results (in same folder as this file)
+# Base directory (folder where this file lives)
 BASE_DIR = os.path.dirname(__file__)
+
+# File to store quiz performance results
 RESULTS_FILE = os.path.join(BASE_DIR, "quiz_results.json")
 
+# File to store ALL manually entered questions (append-only log)
+MANUAL_LOG_FILE = os.path.join(BASE_DIR, "manual_questions_log.txt")
+
+
+# ---------- Data model ----------
 
 @dataclass
 class Flashcard:
@@ -36,6 +43,8 @@ class Flashcard:
         return max(0, self.times_seen - self.times_correct)
 
 
+# ---------- Loading & saving questions ----------
+
 def load_questions_from_file(path: str) -> List[Flashcard]:
     """
     Load Q&A pairs from a plain text file.
@@ -46,6 +55,9 @@ def load_questions_from_file(path: str) -> List[Flashcard]:
       - Blank lines are allowed and ignored.
     """
     cards: List[Flashcard] = []
+
+    if not os.path.exists(path):
+        raise FileNotFoundError(f"File does not exist: {path}")
 
     # Read file lines and strip whitespace
     with open(path, "r", encoding="utf-8") as f:
@@ -74,19 +86,42 @@ def load_questions_from_file(path: str) -> List[Flashcard]:
     return cards
 
 
+def append_cards_to_manual_log(cards: List[Flashcard]) -> None:
+    """
+    Append a list of Flashcards to the master manual log file
+    in the same format used by load_questions_from_file:
+
+        Question?
+        Answer
+
+    (blank line between pairs)
+
+    This file will grow over time as more users manually enter questions.
+    """
+    with open(MANUAL_LOG_FILE, "a", encoding="utf-8") as f:
+        for card in cards:
+            f.write(card.question.strip() + "\n")
+            f.write(card.answer.strip() + "\n\n")
+
+    print(f"Logged {len(cards)} manually entered questions to {MANUAL_LOG_FILE}")
+
+
 def manual_entry() -> List[Flashcard]:
     """
     Allow the user to manually enter questions and answers.
+    After each Q/A pair, ask if they want to add another.
+    Automatically logs all manually entered questions to MANUAL_LOG_FILE.
     """
     print("\n--- Manual Question Entry ---")
     print("Enter your questions and answers.")
-    print("Press Enter on an empty question to finish.\n")
+    print("After each question, you'll be asked if you want to add another.\n")
 
     cards: List[Flashcard] = []
 
     while True:
-        q = input("Question (leave blank to finish): ").strip()
+        q = input("Question (or press Enter to stop): ").strip()
         if not q:
+            # user pressed Enter with no text -> stop adding
             break
 
         # Ensure the question ends with '?'
@@ -97,10 +132,18 @@ def manual_entry() -> List[Flashcard]:
         cards.append(Flashcard(question=q, answer=a))
         print("Added!\n")
 
+        cont = input("Do you want to add another question? (y/n): ").strip().lower()
+        if cont != "y":
+            break
+
     if not cards:
         print("No questions were added.")
-    else:
-        print(f"{len(cards)} questions added.\n")
+        return cards
+
+    print(f"{len(cards)} questions added.\n")
+
+    # Always log these questions to the master manual log file
+    append_cards_to_manual_log(cards)
 
     return cards
 
@@ -273,43 +316,96 @@ def run_quiz_session(cards: List[Flashcard], quiz_name: str) -> None:
         round_number += 1
 
 
-# ---------- Main menu ----------
+# ---------- Main menu (looping) ----------
 
 def main():
-    """Menu that lets user choose how to load questions and start the quiz."""
+    """Looping menu to load questions and start quizzes."""
 
-    # Ask for quiz name (for saving results)
+    # Ask once per run which quiz name to use for saving results
     quiz_name = input(
         "Enter a name for this quiz (e.g., 'exam1', 'bio_midterm'): "
     ).strip() or "default_quiz"
 
-    print("\nHow would you like to load your questions?")
-    print("1) Load from questions.txt")
-    print("2) Enter questions manually")
-    choice = input("Choose 1 or 2: ").strip()
+    while True:
+        print("\nHow would you like to load your questions?")
+        print("1) Load from questions.txt")
+        print("2) Enter questions manually")
+        print("3) Load from manual_questions_log.txt")
+        print("q) Quit")
+        choice = input("Choose 1, 2, 3, or q: ").strip().lower()
 
-    if choice == "1":
-        path = os.path.join(BASE_DIR, "questions.txt")
+        if choice == "q":
+            print("Goodbye!")
+            break
 
-        try:
-            cards = load_questions_from_file(path)
-        except FileNotFoundError:
-            print(f"Could not find file: {path}")
-            return
+        cards: List[Flashcard] = []
 
-    elif choice == "2":
-        cards = manual_entry()
+        if choice == "1":
+            path = os.path.join(BASE_DIR, "questions.txt")
+            try:
+                cards = load_questions_from_file(path)
+            except FileNotFoundError:
+                print(f"Could not find file: {path}")
+                continue
 
-    else:
-        print("Invalid choice.")
-        return
+        elif choice == "2":
+            # Manual entry (always logged)
+            cards = manual_entry()
 
-    if not cards:
-        print("No questions to quiz on.")
-        return
+            if not cards:
+                print("No questions entered. Returning to main menu.")
+                continue
 
-    # Run the full quiz session (with 80% rule + adaptive weighting)
-    run_quiz_session(cards, quiz_name)
+            # Ask what to do next
+            print("\nWhat would you like to do next?")
+            print("1) Start a quiz with these questions now")
+            print("2) Return to main menu (questions are still saved to the manual log)")
+            sub = input("Choose 1 or 2: ").strip()
+
+            if sub == "2":
+                # Do not quiz now; loop back to main menu
+                cards = []
+                print("Returning to main menu...")
+                continue
+            elif sub != "1":
+                print("Invalid choice. Returning to main menu.")
+                cards = []
+                continue
+
+            # If sub == "1", we keep 'cards' and fall through to run_quiz_session
+
+        elif choice == "3":
+            path = MANUAL_LOG_FILE
+            if not os.path.exists(path):
+                print(
+                    f"No manual log file found at {path}. "
+                    "Try entering questions manually first (option 2)."
+                )
+                continue
+            try:
+                cards = load_questions_from_file(path)
+            except FileNotFoundError:
+                print(f"Could not find file: {path}")
+                continue
+
+        else:
+            print("Invalid choice. Please choose 1, 2, 3, or q.")
+            continue
+
+        if not cards:
+            print("No questions to quiz on.")
+            continue
+
+        # Run the full quiz session (with 80% rule + adaptive weighting)
+        run_quiz_session(cards, quiz_name)
+
+        # After a quiz, ask if they want to go back to the main menu
+        again = input(
+            "\nReturn to the main menu for another action? (y/n): "
+        ).strip().lower()
+        if again != "y":
+            print("Goodbye!")
+            break
 
 
 if __name__ == "__main__":
