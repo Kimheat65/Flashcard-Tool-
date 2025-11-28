@@ -4,13 +4,20 @@
     <title>Quiz Result</title>
 </head>
 <body>
-    <h2>Your Score: {{ score }}/{{ total }}</h2>
+    <h1>Your Score: {{ score }}/{{ total }}</h1>
+
+    <br>
 
     <a href="{{ url_for('start_quiz') }}">
         <button>Play Again</button>
     </a>
 
+    <a href="{{ url_for('home') }}">
+        <button>Return Home</button>
+    </a>
+
 </body>
 </html>
+
 
 

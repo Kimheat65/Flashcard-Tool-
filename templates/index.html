@@ -6,12 +6,39 @@
 <body>
     <h1>Welcome to the Flashcard Quiz!</h1>
 
+    <!-- Start Quiz Button -->
     <a href="{{ url_for('start_quiz') }}">
         <button>Start Quiz</button>
     </a>
+    <br><br>
+
+    <!-- Add instructions -->
+    <a href="{{ url_for('instructions') }}">
+        <button>Instructions</button></a><br><br>
+
+    <!-- Upload File Button -->
+    <a href="{{ url_for('upload') }}">
+        <button>Upload Questions File</button>
+    </a>
+    <br><br>
+
+    <!-- Add Manual Question Button -->
+    <a href="{{ url_for('add_question') }}">
+        <button>Add Your Own Question</button>
+    </a>
+
+    <a href="{{ url_for('start_quiz') }}">
+        <button>Start Default Quiz</button></a>
+        
+    <a href="{{ url_for('upload') }}">
+        <button>Upload Custom Questions</button></a>
+
+
 
 </body>
 </html>
+
+
 
 
 
