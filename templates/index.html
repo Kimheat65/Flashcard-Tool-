@@ -1,42 +1,63 @@
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>Flashcard Quiz</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: #343a40;
+            margin-bottom: 30px;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+        .btn:hover { transform: scale(1.05); }
+        .btn-primary { background-color: #0d6efd; color: white; }
+        .btn-secondary { background-color: #6c757d; color: white; }
+        .btn-success { background-color: #198754; color: white; }
+        .btn-warning { background-color: #ffc107; color: black; }
+    </style>
 </head>
 <body>
-    <h1>Welcome to the Flashcard Quiz!</h1>
+    <div class="container">
+        <h1>Welcome to the Flashcard Quiz!</h1>
 
-    <!-- Start Quiz Button -->
-    <a href="{{ url_for('start_quiz') }}">
-        <button>Start Quiz</button>
-    </a>
-    <br><br>
-
-    <!-- Add instructions -->
-    <a href="{{ url_for('instructions') }}">
-        <button>Instructions</button></a><br><br>
-
-    <!-- Upload File Button -->
-    <a href="{{ url_for('upload') }}">
-        <button>Upload Questions File</button>
-    </a>
-    <br><br>
-
-    <!-- Add Manual Question Button -->
-    <a href="{{ url_for('add_question') }}">
-        <button>Add Your Own Question</button>
-    </a>
-
-    <a href="{{ url_for('start_quiz') }}">
-        <button>Start Default Quiz</button></a>
-        
-    <a href="{{ url_for('upload') }}">
-        <button>Upload Custom Questions</button></a>
-
-
-
+        <a class="btn btn-primary" href="{{ url_for('start_quiz') }}">Start Quiz</a>
+        <a class="btn btn-secondary" href="{{ url_for('instructions') }}">Instructions</a>
+        <a class="btn btn-success" href="{{ url_for('upload') }}">Upload Questions File</a>
+        <a class="btn btn-warning" href="{{ url_for('add_question') }}">Add Your Own Question</a>
+    </div>
 </body>
 </html>
+
+
 
 
 

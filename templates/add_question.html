@@ -4,19 +4,22 @@
     <title>Add a Question</title>
 </head>
 <body>
-    <h1>Add a New Flashcard Question</h1>
+    <h1>Add a New Question</h1>
 
-    <form action="/add_question" method="POST">
+    <form action="/save_question" method="POST">
         <label>Question:</label><br>
-        <input type="text" name="question" required><br><br>
+        <textarea name="question" rows="3" cols="50" required></textarea>
+        <br><br>
 
         <label>Answer:</label><br>
-        <input type="text" name="answer" required><br><br>
+        <textarea name="answer" rows="3" cols="50" required></textarea>
+        <br><br>
 
-        <button type="submit">Add Question</button>
+        <button type="submit">Save Question</button>
     </form>
 
     <br>
-    <a href="/">Back to Home</a>
+    <button onclick="location.href='/'">Return Home</button>
 </body>
 </html>
+

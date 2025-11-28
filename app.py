@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, session
 from quiz_app.quiz_app import load_questions_from_file
 import os
 import random
+import json
 
 
 app = Flask(__name__)
@@ -136,30 +137,25 @@ def custom_question():
 # --------------------------
 # MANUAL ADD QUESTION ROUTE
 # --------------------------
+
 @app.route('/add_question', methods=['GET', 'POST'])
 def add_question():
-    global cards
-
-    if request.method == 'POST':
-        action = request.form.get("action")
-
-    # If user pressed quit
-    if action == "quit":
-        return redirect(url_for('result'))
-
-    user_answer = request.form.get('answer')
-    correct_answer = cards[index].answer
-
-    if user_answer.strip().lower() == correct_answer.strip().lower():
-        session['score'] += 1
-
-    # Next question logic
-    index += 1
-    session['index'] = index
-
-    if index >= len(cards):
-        return redirect(url_for('result'))
     return render_template('add_question.html')
+
+
+
+@app.route("/save_question", methods=["POST"])
+def save_question():
+    question = request.form["question"]
+    answer = request.form["answer"]
+
+    # Save to file (or database)
+    manual_question = {"question": question, "answer": answer}
+    
+    with open("manual_questions.json", "a") as f:
+        f.write(json.dumps(manual_question) + "\n")
+
+    return redirect("/")
 
 if __name__ == '__main__':
     app.run(debug=True)
