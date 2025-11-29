@@ -43,16 +43,22 @@
         .btn-secondary { background-color: #6c757d; color: white; }
         .btn-success { background-color: #198754; color: white; }
         .btn-warning { background-color: #ffc107; color: black; }
+        .btn-purple { background-color: #8a2be2;   color: white;}
+
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Welcome to the Flashcard Quiz!</h1>
 
-        <a class="btn btn-primary" href="{{ url_for('start_quiz') }}">Start Quiz</a>
-        <a class="btn btn-secondary" href="{{ url_for('instructions') }}">Instructions</a>
-        <a class="btn btn-success" href="{{ url_for('upload') }}">Upload Questions File</a>
-        <a class="btn btn-warning" href="{{ url_for('add_question') }}">Add Your Own Question</a>
+    <a class="btn btn-primary" href="{{ url_for('start_quiz') }}">Start Quiz</a>
+    <a class="btn btn-secondary" href="{{ url_for('instructions') }}">Instructions</a>
+    <a class="btn btn-success" href="{{ url_for('upload') }}">Upload Questions File</a>
+    <a class="btn btn-warning" href="{{ url_for('add_question') }}">Add Your Own Question</a>
+    <a class="btn btn-purple" href="{{ url_for('select_set') }}">Manage Flashcard Sets</a>
+
+
+
     </div>
 </body>
 </html>

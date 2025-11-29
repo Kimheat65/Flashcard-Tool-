@@ -142,20 +142,61 @@ def custom_question():
 def add_question():
     return render_template('add_question.html')
 
-
-
 @app.route("/save_question", methods=["POST"])
 def save_question():
     question = request.form["question"]
     answer = request.form["answer"]
 
-    # Save to file (or database)
-    manual_question = {"question": question, "answer": answer}
-    
-    with open("manual_questions.json", "a") as f:
-        f.write(json.dumps(manual_question) + "\n")
+    set_name = session.get("current_set")
+    if not set_name:
+        return redirect("/")   # no set selected
 
-    return redirect("/")
+    file_path = f"flashcard_sets/{set_name}.json"
+
+    # Load existing data
+    if os.path.exists(file_path):
+        with open(file_path, "r") as f:
+            data = json.load(f)
+    else:
+        data = []
+
+    # Add new question
+    data.append({"question": question, "answer": answer})
+
+    # Save back to file
+    with open(file_path, "w") as f:
+        json.dump(data, f, indent=4)
+
+    return redirect("/add_question")
+
+
+@app.route("/select_set", methods=["GET", "POST"])
+def select_set():
+    # Ensure folder exists
+    if not os.path.exists("flashcard_sets"):
+        os.makedirs("flashcard_sets")
+
+    if request.method == "POST":
+        selected = request.form.get("set_name")
+        new_set = request.form.get("new_set_name")
+
+        if new_set:
+            selected = new_set
+            open(f"flashcard_sets/{selected}.json", "w").write("[]")
+
+        session["current_set"] = selected
+        return redirect("/add")
+
+    # For GET request → load sets
+    sets = os.listdir("flashcard_sets")
+    sets = [s.replace(".json", "") for s in sets]
+    return render_template("select_set.html", sets=sets)
+
+
+@app.route("/choose_set")
+def choose_set():
+    sets = [f.replace(".json", "") for f in os.listdir("flashcard_sets") if f.endswith(".json")]
+    return render_template("select_set.html", sets=sets)
 
 if __name__ == '__main__':
     app.run(debug=True)
