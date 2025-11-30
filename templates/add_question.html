@@ -1,12 +1,13 @@
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>Add a Question</title>
 </head>
 <body>
-    <h1>Add a New Question</h1>
+    <h1>Add a New Question to {{ set_name }}</h1>
 
-    <form action="/save_question" method="POST">
+    <form_question
         <label>Question:</label><br>
         <textarea name="question" rows="3" cols="50" required></textarea>
         <br><br>
@@ -18,8 +19,17 @@
         <button type="submit">Save Question</button>
     </form>
 
-    <br>
-    <button onclick="location.href='/'">Return Home</button>
-</body>
-</html>
+    <hr>
+    <h2>Existing Questions in {{ set_name }}:</h2>
+    {% if questions %}
+        <ul>
+            {% for q in questions %}
+                <li><strong>{{ q.question }}</strong> → {{ q.answer }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No questions yet. Add one above!</p>
+    {% endif %}
 
+    <br>
+    <button onclick="location.href='/'ml>
