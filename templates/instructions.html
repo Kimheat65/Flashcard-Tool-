@@ -1,23 +1,52 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Instructions</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            width: 480px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        h1 { margin-bottom: 20px; }
+        ul { text-align: left; line-height: 1.6; font-size: 18px; margin-bottom: 25px; }
+        a {
+            display: block;
+            padding: 12px;
+            border-radius: 10px;
+            background: #0d6efd;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+    </style>
 </head>
 <body>
-    <h1>How to Use the Flashcard Quiz</h1>
+    <div class="container">
+        <h1>Instructions</h1>
+        <ul>
+            <li>Each question has a text answer field.</li>
+            <li>Type your answer and click Submit.</li>
+            <li>You will see feedback after each question.</li>
+            <li>At the end your score will be displayed.</li>
+        </ul>
 
-    <p>Welcome! Here’s how the quiz works:</p>
-
-    <ul>
-        <li>Click <strong>Start Quiz</strong> to begin.</li>
-        <li>Read the question and type your answer in the box.</li>
-        <li>Your score will update automatically after each question.</li>
-        <li>When you finish, you’ll see your total score.</li>
-        <li>You can upload custom questions as a .txt file on the homepage.</li>
-        <li>You can also add individual questions manually.</li>
-    </ul>
-
-    <br>
-    <a href="/">Back to Home</a>
+        <a href="{{ url_for('select_quiz_set') }}">Continue</a>
+    </div>
 </body>
 </html>
+

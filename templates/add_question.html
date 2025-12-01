@@ -1,35 +1,81 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Add a Question</title>
+    <meta charset="UTF-8">
+    <title>Add Question</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            width: 500px;
+            border-radius: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        h2 { margin-bottom: 20px; text-align: center; }
+        label { font-weight: bold; display: block; margin-top: 10px; }
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+        }
+        button {
+            margin-top: 25px;
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
+            background: #007bff;
+            border: none;
+            color: white;
+            border-radius: 12px;
+            cursor: pointer;
+        }
+        button:hover { background: #0056b3; }
+    </style>
 </head>
 <body>
-    <h1>Add a New Question to {{ set_name }}</h1>
 
-    <form_question
-        <label>Question:</label><br>
-        <textarea name="question" rows="3" cols="50" required></textarea>
-        <br><br>
+<div class="container">
+    <h2>Add Question Manually</h2>
 
-        <label>Answer:</label><br>
-        <textarea name="answer" rows="3" cols="50" required></textarea>
-        <br><br>
+    <form action="{{ url_for('add_question') }}" method="POST">
+
+        <!-- choose existing set -->
+        <label>Select Existing Quiz Set:</label>
+        <select name="existing_set">
+            <option value="">-- None (Create New) --</option>
+            {% for setname in sets %}
+                <option value="{{ setname }}">{{ setname }}</option>
+            {% endfor %}
+        </select>
+
+        <!-- OR create new set -->
+        <label>Or Create New Set:</label>
+        <input type="text" name="new_set_name" placeholder="New set name (optional)">
+
+        <!-- Question -->
+        <label>Question:</label>
+        <textarea name="question" required></textarea>
+
+        <!-- Answer -->
+        <label>Answer:</label>
+        <input type="text" name="answer" required>
 
         <button type="submit">Save Question</button>
     </form>
 
-    <hr>
-    <h2>Existing Questions in {{ set_name }}:</h2>
-    {% if questions %}
-        <ul>
-            {% for q in questions %}
-                <li><strong>{{ q.question }}</strong> → {{ q.answer }}</li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No questions yet. Add one above!</p>
-    {% endif %}
+</div>
 
-    <br>
-    <button onclick="location.href='/'ml>
+</body>
+</html>
+

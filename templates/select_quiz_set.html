@@ -1,78 +1,32 @@
-<!-- templates/select_quiz_set.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Select Quiz Set</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, sans-serif;
-            background: #f8f9fa;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .container {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            text-align: center;
-        }
-        h1 {
-            margin-bottom: 20px;
-        }
-        select {
-            padding: 10px;
-            font-size: 16px;
-            margin-bottom: 20px;
-            width: 100%;
-        }
-        button {
-            padding: 12px 24px;
-            font-size: 16px;
-            border: none;
-            border-radius: 8px;
-            background-color: #007bff;
-            color: white;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        .message {
-            margin-bottom: 15px;
-            color: red;
-        }
-    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Select a Quiz Set</h1>
+    <h2>Select a Question Set</h2>
 
-        {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            <div class="message">
-            {% for category, message in messages %}
-                <p>{{ message }}</p>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category, msg in messages %}
+            <p style="color: red">{{ msg }}</p>
+        {% endfor %}
+    {% endwith %}
+
+    <form method="POST">
+        <select name="set_name" required>
+            <option value="">-- Select --</option>
+            {% for s in sets %}
+            <option value="{{ s }}">{{ s }}</option>
             {% endfor %}
-            </div>
-        {% endif %}
-        {% endwith %}
+        </select>
+        <button type="submit">Start</button>
+    </form>
 
-        <form method="POST">
-            <select name="set_name" required>
-                <option value="" disabled selected>Select a set...</option>
-                {% for s in sets %}
-                    <option value="{{ s }}">{{ s }}</option>
-                {% endfor %}
-            </select>
-            <br>
-            <button type="submit">Start Quiz</button>
-        </form>
-    </div>
+    <br><a href="{{ url_for('home') }}">Back Home</a>
 </body>
 </html>
+
+
+

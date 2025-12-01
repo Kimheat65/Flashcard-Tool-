@@ -1,7 +1,8 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flashcard Quiz</title>
     <style>
         body {
@@ -17,51 +18,44 @@
             text-align: center;
             background: white;
             padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            width: 400px;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            width: 420px;
         }
-        h1 {
-            font-size: 2.5rem;
-            color: #343a40;
-            margin-bottom: 30px;
-        }
-        .btn {
+        h1 { margin-bottom: 25px; }
+        a, button {
             display: block;
             width: 100%;
             padding: 12px;
             margin: 10px 0;
-            font-size: 1.2rem;
+            font-size: 18px;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
-            transition: 0.3s;
             text-decoration: none;
+            text-align: center;
+            transition: .3s;
         }
-        .btn:hover { transform: scale(1.05); }
-        .btn-primary { background-color: #0d6efd; color: white; }
-        .btn-secondary { background-color: #6c757d; color: white; }
-        .btn-success { background-color: #198754; color: white; }
-        .btn-warning { background-color: #ffc107; color: black; }
-        .btn-purple { background-color: #8a2be2;   color: white;}
-
+        .btn-primary { background: #0d6efd; color: white; }
+        .btn-success { background: #198754; color: white; }
+        .btn-warning { background: #ffc107; }
+        .btn-info { background: #0dcaf0; color: black; }
+        a:hover, button:hover { transform: scale(1.05); }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to the Flashcard Quiz!</h1>
+        <h1>Flashcard Quiz App</h1>
 
-    <a class="btn btn-primary" href="{{ url_for('start_quiz') }}">Start Quiz</a>
-    <a class="btn btn-secondary" href="{{ url_for('instructions') }}">Instructions</a>
-    <a class="btn btn-success" href="{{ url_for('upload') }}">Upload Questions File</a>
-    <a class="btn btn-warning" href="{{ url_for('add_question') }}">Add Your Own Question</a>
-    <a class="btn btn-purple" href="{{ url_for('select_set') }}">Manage Flashcard Sets</a>
-
-
-
+        <a class="btn-primary" href="{{ url_for('instructions') }}">Instructions</a>
+        <a class="btn-success" href="{{ url_for('select_quiz_set') }}">Start Quiz</a>
+        <a class="btn-warning" href="{{ url_for('upload') }}">Upload Question File</a>
+        <a class="btn-info" href="{{ url_for('add_question') }}">Add Question Manually</a>
     </div>
 </body>
 </html>
+
+
 
 
 

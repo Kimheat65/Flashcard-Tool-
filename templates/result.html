@@ -1,23 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Quiz Result</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results</title>
 </head>
 <body>
-    <h1>Your Score: {{ score }}/{{ total }}</h1>
+    <h1>Quiz Complete!</h1>
+    <h2>Score: {{ score }} / {{ total }} ({{ percent|round(1) }}%)</h2>
 
-    <br>
-
-    <a href="{{ url_for('start_quiz') }}">
-        <button>Play Again</button>
-    </a>
-
-    <a href="{{ url_for('home') }}">
-        <button>Return Home</button>
-    </a>
-
+    <a href="{{ url_for('home') }}">Return Home</a>
 </body>
 </html>
+
+
 
 
 
