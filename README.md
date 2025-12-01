@@ -3,6 +3,93 @@ This is a software design project that mimics flashcards practice used to help w
 
 Team Members: Kimheat Chheav and Saba Ali
 
+# OIM 3640: Final Reflection 
+
+## Section 1: Big Idea & Purpose: 
+Modern students often study from scattered materials—lecture notes, PDFs, and shared documents—without a simple way to turn that content into active recall practice. Our project aims to solve that problem by building a browser-based flashcard quiz tool where users can upload their own question sets or create them manually, then practice in an interactive, structured way. Instead of relying on a fixed, pre-built deck, the tool lets users define their own “flashcard sets” as .txt or .json files and reuse them across multiple sessions. We designed the system to emphasize mastery, not just completion: missed questions are automatically repeated at the end of a quiz, so learners get extra exposure to the material they struggle with. At the same time, we wanted to practice real-world software design skills by building a full Flask web app with routes, templates, file handling, and session management. The end goal was to create something both useful as a study tool and meaningful as a portfolio piece that shows we can design, implement, and refine a small but complete web application.
+
+## Section 2: User Instructions/ ReadME
+1. Make sure you have Python 3 installed
+2. Install the required Flask: pip install flask
+3. From the project root (the folder containing quiz_app.py and the templates folder), run: python quiz_app.py
+4. Open your browser and go to: http://127.0.0.1:5000/
+5. You’ll see the home page with navigation to:
+- Upload a question file
+- Add your own questions
+- Select a quiz set and start practicing
+
+Supported Question Formats: 
+- Text files (.txt)
+    - Each question must end with a ?
+    - The next line is the answer
+    - Blank lines are allowed between Q&A pairs
+
+    Ex: 
+    What is the capital of France?
+    Paris
+
+    Who founded Babson College?
+    Roger Babson
+- JSON files (.json) created by the app when you add your own questions are stored in the flashcard_sets folder with this structure:
+{
+  "questions": [
+    { "question": "What is 2 + 2?", "answer": "4" },
+    { "question": "What color is the sky?", "answer": "blue" }
+  ]
+}
+
+Basic User Flow
+- Upload: Go to the Upload page, submit a .txt file, and the app stores it as a set in flashcard_sets/.
+- Add Question: Use the Add Question page to either create a new set or add questions to an existing one; these are saved as .json sets.
+- Select Set: On the Select Quiz Set page, choose from all available .txt and .json sets.
+- Quiz: The app shows one question at a time, checks your answer, and gives instant feedback. At the end of the pool, any questions you missed are automatically repeated until you’ve cycled through them again, and then you see your final score.
+
+## Section 3: Implementation Information
+Our flashcard tool is implemented as a Flask web application that manages question sets, quiz state, and user interaction through a set of clearly defined routes. All sets are stored in a flashcard_sets directory, and the helper functions load_questions() and save_questions() handle reading and writing questions from .txt and .json files. The upload route (/upload) lets users submit a .txt file; the app parses it into question–answer pairs and saves it as a named set. The Add Question route (/add_question) supports either creating a brand-new set or appending to an existing one, storing everything in a consistent JSON structure under the "questions" key. When a user selects a set via /select_quiz_set, the app loads that set into session["quiz_pool"], initializes the quiz index and score, and then /question handles the main quiz loop.
+
+During the quiz, each POST to /question checks the answer against the correct one, updates the score, and stores any missed questions in session["wrong_questions"]. Once the user has gone through the entire pool, the app checks whether there are missed questions: if so, it replaces the quiz pool with only the wrong questions and continues quizzing; if not, it redirects to /result. The /result route calculates the total score and percentage, displays the summary, and finally clears the session. Structurally, this creates a clear separation of concerns:
+- Routes manage HTTP requests and page transitions
+- Helper functions handle file parsing and persistence
+- Session data tracks quiz progress and performance
+
+High-Level Architecture (Markdown Diagram)
+
++-------------------------+
+|        Browser          |
+| (HTML templates/forms)  |
++-----------+-------------+
+            |
+            v
++-------------------------+
+|        Flask App        |
++-----------+-------------+
+            |
+   +--------+--------+
+   |                 |
+   v                 v
++--------+     +---------------------+
+| Routes |     |  Helper Functions   |
+| (/,    |     | - load_questions    |
+| /upload, etc)| - save_questions    |
++--------+     +---------------------+
+   |
+   v
++------------------------------+
+|  Session State (per user)    |
+| - quiz_pool                  |
+| - index                      |
+| - score                      |
+| - wrong_questions            |
++------------------------------+
+   |
+   v
++------------------------------+
+|     flashcard_sets/ folder   |
+| - *.txt (uploaded sets)      |
+| - *.json (manual sets)       |
++------------------------------+
+S
+
 # OIM3640 Final Project-Q&A Practice Tool
 
 ## Overview
