@@ -4,3 +4,9 @@ python
 how many people are at babson college?
 2500
 
+what class are we in right now?
+oim3640
+
+is the earth falt or round?
+flat
+
