@@ -88,7 +88,18 @@ High-Level Architecture (Markdown Diagram)
 | - *.txt (uploaded sets)      |
 | - *.json (manual sets)       |
 +------------------------------+
-S
+## Section 4: Project's Results
+At the end of each quiz practice, the user can see the result of their scores. We created an html page to showcase the user's score based on the number of questions they answered correctly in addition to the percentage of the correct questions. In flask, we decided to automatically take the user to the next questions they did incorrectly until they answered all the questions correctly. Once they have accomplished that, flask will take them to the result page where they can see their results practice. 
+
+## Section 5: Projects Evolution/Exploring 
+Our project evolution involves three main stages: 
+- Creating a console-based question-and-answer
+- Working with flask to create a website
+- Adding html and css for styling and interactiveness
+  
+First, we begin with the minimum viable product. For the MVP, we begin to do a console-based question-and-answer practice tool. Once, we completed that, we decided to add the practice tool in flask because we wanted to make it more interactive to our user. The goal of the flask is that we want to create a website where people especially students go practice for their exams and quizzes. Having a website is also convienient for those who may not have python to work with. The initial website was very bland, we had no color and all the texts and images are on the top-right side. We ended by adding colors and images to make the website more appealing using html and css. 
+
+## Section 6: Attribution
 
 # OIM3640 Final Project-Q&A Practice Tool
 
