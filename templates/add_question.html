@@ -1,46 +1,61 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Add Question</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results</title>
+
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, sans-serif;
-            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            background: linear-gradient(135deg, #a0e7e5, #b4f8c8, #945e07);
+            text-align: center;
+            padding: 60px;
             margin: 0;
         }
-        .container {
+
+        h1 {
+            font-size: 3rem;
+            color: #0b2545;
+            margin-bottom: 10px;
+        }
+
+        h2 {
             background: white;
-            padding: 40px;
-            width: 500px;
-            border-radius: 20px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            padding: 20px 35px;
+            display: inline-block;
+            border-radius: 14px;
+            font-size: 1.8rem;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+            color: #001580;
         }
-        h2 { margin-bottom: 20px; text-align: center; }
-        label { font-weight: bold; display: block; margin-top: 10px; }
-        input, textarea, select {
-            width: 100%;
-            padding: 10px;
-            margin-top: 6px;
-            border-radius: 10px;
-            border: 1px solid #ccc;
-        }
-        button {
-            margin-top: 25px;
-            width: 100%;
-            padding: 15px;
-            font-size: 1.1rem;
-            background: #007bff;
-            border: none;
+
+        a {
+            display: inline-block;
+            margin-top: 35px;
+            padding: 30px 25px;
+            background: #0b2545;
             color: white;
-            border-radius: 12px;
-            cursor: pointer;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
         }
-        button:hover { background: #0056b3; }
+
+        .question-box {
+        max-width: 1000px;     /* Increase width */
+        margin: 40px auto;
+        background: white;
+        padding: 30px;
+        border-radius: 14px;
+        font-size: 1.6rem;     /* Larger text */
+        text-align: center;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+
+        a:hover {
+            background: #133c66;
+        }
     </style>
 </head>
 <body>

@@ -1,5 +1,6 @@
 import os
 import json
+import random
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 
 app = Flask(__name__)
@@ -158,7 +159,9 @@ def start_quiz():
     if not cards:
         flash("This set has no questions or the format is incorrect.", "danger")
         return redirect(url_for("select_quiz_set"))
-
+    random.shuffle(cards)
+    
+    
     session["quiz_pool"] = cards
     session["index"] = 0
     session["score"] = 0
