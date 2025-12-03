@@ -97,9 +97,12 @@ Our project evolution involves three main stages:
 - Working with flask to create a website
 - Adding html and css for styling and interactiveness
   
-First, we begin with the minimum viable product. For the MVP, we begin to do a console-based question-and-answer practice tool. Once, we completed that, we decided to add the practice tool in flask because we wanted to make it more interactive to our user. The goal of the flask is that we want to create a website where people especially students go practice for their exams and quizzes. Having a website is also convienient for those who may not have python to work with. The initial website was very bland, we had no color and all the texts and images are on the top-right side. We ended by adding colors and images to make the website more appealing using html and css. 
+First, we begin with the minimum viable product. For the MVP, we begin to do a console-based question-and-answer practice tool. Once, we completed that, we decided to add the practice tool in flask because we wanted to make it more interactive to our user. The goal of the flask is that we want to create a website public where people especially students go practice for their exams and quizzes. Having a website is also convienient for those who may not have python to work with. The initial website was very bland, we had no color and all the texts and images are on the top-left side. We ended by adding colors and images to make the website more appealing using html and css. 
 
 ## Section 6: Attribution
+We would like to acknowledge that AI especially Copilot and chatGPT are an integral part of our learning process. We had so many errors and working with so many files, so Copilot helped us debug so many of our codes. 
+HTML is something we touched upon in class, but Copilot really helped us structure our code with the styling and heading. Working with a lot of html helped us see how rendering works. 
+Our website multiple times because we sometimes forgot to return an empty list, so Copilot suggested ways for us to fix our code. 
 
 # OIM3640 Final Project-Q&A Practice Tool
 
