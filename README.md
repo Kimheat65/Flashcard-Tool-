@@ -149,7 +149,7 @@ This tool solves that problem by letting users:
 - Python 3.x installed (we used Python 3.13)
 - A terminal (Command Prompt, PowerShell, or VS Code terminal)
 
-### Project Structure
+### Project Structure for Terminal/Console Based Questions
 
 ```text
 Flashcard-Tool-/
@@ -160,3 +160,4 @@ Flashcard-Tool-/
     ├── quiz_app.py
     ├── questions.txt
     └── quiz_results.json   (created automatically after first run) --> you will be asked to label the time you are studying for so you can go back and track progress
+
