@@ -89,7 +89,7 @@ High-Level Architecture (Markdown Diagram)
 | - *.json (manual sets)       |
 +------------------------------+
 ## Section 4: Project's Results
-At the end of each quiz practice, the user can see the result of their scores. We created an html page to showcase the user's score based on the number of questions they answered correctly in addition to the percentage of the correct questions. In flask, we decided to automatically take the user to the next questions they did incorrectly until they answered all the questions correctly. Once they have accomplished that, flask will take them to the result page where they can see their results practice. This enables the user to master their quiz_set in one seating. Questions that are incorrect will show up in the next round and questions that are correct will not appear again.  
+At the end of each quiz practice, the user can see the result of their scores. We created an html page to showcase the user's score based on the number of questions they answered correctly in addition to the percentage of the correct questions. In flask, we decided to automatically take the user to the next questions they did incorrectly until they answered all the questions correctly. Once they have accomplished that, flask will take them to the result page where they can see their results practice. This enables the user to master their quiz_set in one seating. Questions that are incorrect will show up in the next round and questions that are correct will not appear again unless the user chooses to practice the set again.  
 
 ## Section 5: Projects Evolution/Exploring 
 Our project evolution involves three main stages: 
@@ -99,7 +99,7 @@ Our project evolution involves three main stages:
   
 First, we begin with the minimum viable product. For the MVP, we begin to do a console-based question-and-answer practice tool. Once, we completed that, we decided to add the practice tool in flask because we wanted to make it more interactive to our user. Flasks are divided into 4 steps: setting up the instructions, allowing users to take the quiz with different sets, allowing the users to upload their quiz in either text files or json files, and allowing users to manually type their questions and answers. The goal of the flask is that we want to create a website public where people especially students go practice for their exams and quizzes. This might be something we will pursue later on. Having a website is also convienient for those who may not have python to work with. The last stage was mainly for the aesthetic. The initial flask was very bland; we had no color and all the texts are left are arrange by default, which was on the top left side. We ended by adding colors and images and make all the texts centered to make the website more appealing using html and css. 
 
-Further project's evolution can be in the evolution files.  
+Further project's evolution can be seen in the evolution files.  
 
 ## Section 6: Attribution
 We would like to acknowledge that AI especially Copilot and chatGPT are an integral part of our learning process. We had many errors and working with so a lot of files; and something spotting the errors with our own eyes take time, so Copilot helped us debug so many of our codes. 
