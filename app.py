@@ -4,13 +4,12 @@ import random
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 
 app = Flask(__name__)
-app.secret_key = "supersecret"
+app.secret_key = "BabsonSeniors"
 
-SETS_FOLDER = "flashcard_sets"
+SETS_FOLDER = "flashcard_sets"  # Folder to store question sets and saved for later 
 os.makedirs(SETS_FOLDER, exist_ok=True)
 
-# ---------- Helper functions ----------
-
+# Questions are loaded from text or JSON files and they are being recognized by the question marks 
 def load_questions(file_path):
     """Load questions from a .txt or .json file into a list of dicts."""
     if not os.path.exists(file_path):
@@ -36,22 +35,24 @@ def load_questions(file_path):
             return json.load(f)
     return []
 
+# Save questions to JSON file
 def save_questions(file_path, cards):
     """Save list of question dicts to JSON."""
     with open(file_path, "w", encoding="utf-8") as f:
         json.dump(cards, f, indent=4)
 
-# ---------- Routes ----------
 
+# Used in the welcome page 
 @app.route("/")
 def home():
     return render_template("index.html")
 
+# Instructions page
 @app.route("/instructions")
 def instructions():
     return render_template("instructions.html")
 
-# ---------- Upload Questions File ----------
+# Questions will be uploaded in txt format 
 @app.route("/upload", methods=["GET", "POST"])
 def upload():
     if request.method == "POST":
@@ -66,7 +67,7 @@ def upload():
             flash("Invalid file. Must be a .txt file with questions ending in '?' and answers on the next line.", "danger")
     return render_template("upload.html")
 
-# ---------- Add Your Own Question ----------
+# Questions can also be manually added as a new set or an existing one 
 @app.route('/add_question', methods=['GET', 'POST'])
 def add_question():
     sets = [f.replace('.json', '') for f in os.listdir(SETS_FOLDER) if f.endswith('.json')]
@@ -117,7 +118,7 @@ def add_question():
 
     return render_template('add_question.html', sets=sets)
 
-# ---------- Select Quiz Set ----------
+# Users have the option to select a quiz set 
 @app.route("/select_quiz_set", methods=["GET", "POST"])
 def select_quiz_set():
     # Get all available sets (.txt)
@@ -126,7 +127,6 @@ def select_quiz_set():
     for f in os.listdir(SETS_FOLDER)
     if f.endswith(".txt") or f.endswith(".json")
 ]
-
 
     if request.method == "POST":
         chosen = request.form.get("set_name")
@@ -137,7 +137,7 @@ def select_quiz_set():
             flash("Please select a set.", "danger")
 
     return render_template("select_quiz_set.html", sets=sets)
-# ---------- Start Quiz ----------
+# When the quiz starts, the questions are randomized 
 @app.route("/start", methods=["GET"])
 def start_quiz():
     set_name = session.get("quiz_set")
@@ -160,8 +160,7 @@ def start_quiz():
         flash("This set has no questions or the format is incorrect.", "danger")
         return redirect(url_for("select_quiz_set"))
     random.shuffle(cards)
-    
-    
+    session["original_total"] = len(cards)
     session["quiz_pool"] = cards
     session["index"] = 0
     session["score"] = 0
@@ -170,7 +169,8 @@ def start_quiz():
     return redirect(url_for("question"))
 
 
-# ---------- Quiz Question ----------
+# In the process of answering questions, users can choose to quit at any time. Incorrect questions
+# will be repeated until all the questions are answered correctly. 
 @app.route("/question", methods=["GET", "POST"])
 def question():
     index = session.get("index", 0)
@@ -218,15 +218,24 @@ def question():
 
     return render_template("question.html", card=card, current=index + 1, total=len(pool))
 
-# ---------- Result ----------
+# Shows the results at the end of the quiz 
 @app.route("/result")
 def result():
     score = session.get("score", 0)
-    total = len(session.get("quiz_pool", []))
+    total = session.get("original_total", 0)
     percent = (score / total) * 100 if total > 0 else 0
+
+    wrong_questions = session.get("wrong_questions", [])
+
+    if percent < 80 and wrong_questions:
+        flash(f"Score below 80% ({percent:.1f}%). Starting another practice round!", "warning")
+        session["quiz_pool"] = wrong_questions
+        session["index"] = 0
+        session["score"] = 0
+        session["wrong_questions"] = []
+        return redirect(url_for("question"))
 
     session.clear()
     return render_template("result.html", score=score, total=total, percent=percent)
-
 if __name__ == "__main__":
     app.run(debug=True)
